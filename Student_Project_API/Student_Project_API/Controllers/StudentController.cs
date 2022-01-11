@@ -45,7 +45,7 @@ namespace Student_Project_API.Controllers
             return Ok(DtoStudents);
         }
         [HttpGet("{id}")]
-        public IActionResult GetStudents(int? id)
+        public IActionResult GetStudent(int? id)
         {
             if (id == null)
             {
@@ -57,20 +57,20 @@ namespace Student_Project_API.Controllers
                 return StatusCode(StatusCodes.Status400BadRequest, "Error message!");
             }
 
-            Student employee = _context.Students.Find(id);
-            if (employee == null)
+            Student student = _context.Students.Find(id);
+            if (student == null)
             {
-                ModelState.AddModelError("", "Error, nese oluf!");
+                ModelState.AddModelError("", "Error, message!");
                 return StatusCode(StatusCodes.Status404NotFound, ModelState);
 
                 //return StatusCode(StatusCodes.Status400BadRequest, "Error message?!");
             }
 
-            return Ok(employee);
+            return Ok(student);
         }
 
         [HttpPost]
-        public IActionResult CreateStudents(Student model)
+        public IActionResult CreateStudent(Student model)
         {
             if (ModelState.IsValid)
             {
